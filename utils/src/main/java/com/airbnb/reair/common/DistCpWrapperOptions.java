@@ -52,8 +52,8 @@ public class DistCpWrapperOptions {
   private long distcpDynamicJobTimeoutBase = distcpJobTimeout;
   // maximum job timeout for variable timeout (ms)
   private long distcpDynamicJobTimeoutMax = Long.MAX_VALUE;
-  // Use DynamicInputFormat
-  private boolean distcpUseDynamicStrategy = false;
+  // How files are distributed among mappers.
+  private String distcpStrategy = "uniformsize";
 
   /**
    * Constructor for DistCp options.
@@ -124,8 +124,8 @@ public class DistCpWrapperOptions {
     return this;
   }
 
-  public DistCpWrapperOptions setDistcpUseDynamicStrategy(boolean distcpUseDynamicStrategy) {
-    this.distcpUseDynamicStrategy = distcpUseDynamicStrategy;
+  public DistCpWrapperOptions setDistcpStrategy(String distcpStrategy) {
+    this.distcpStrategy = distcpStrategy;
     return this;
   }
 
@@ -177,8 +177,8 @@ public class DistCpWrapperOptions {
     return distCpPollInterval;
   }
 
-  public boolean getDistcpUseDynamicStrategy() {
-    return distcpUseDynamicStrategy;
+  public String getDistcpStrategy() {
+    return distcpStrategy;
   }
 
   /**

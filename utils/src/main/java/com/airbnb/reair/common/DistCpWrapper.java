@@ -158,10 +158,8 @@ public class DistCpWrapper {
         distcpArgs.add("-update");
       }
 
-      if (options.getDistcpUseDynamicStrategy()) {
-        distcpArgs.add("-strategy");
-        distcpArgs.add("dynamic");
-      }
+      distcpArgs.add("-strategy");
+      distcpArgs.add(options.getDistcpStrategy());
 
       // Preserve replication number, user, group, permissions, and block size. 
       // Preserving block size is needed for DistCp to use built in checksums for verification.

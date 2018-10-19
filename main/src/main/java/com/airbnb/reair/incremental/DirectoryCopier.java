@@ -116,6 +116,14 @@ public class DirectoryCopier {
         options.setDistcpDynamicJobTimeoutMax(dynamicTimeoutMax);
       }
 
+      String strategy = conf.get(ConfigurationKeys.COPY_JOB_DISTCP_STRATEGY, "uniformsize");
+      if (strategy.equalsIgnoreCase("dynamic") || strategy.equalsIgnoreCase("uniformsize")) {
+        options.setDistcpStrategy(strategy);
+      } else {
+        throw new ConfigurationException(
+            String.format("{} is not a valid distcp strategy (dynamic or uniformsize).", strategy));
+      }
+
       DistCpWrapper distCpWrapper = new DistCpWrapper(conf);
       long bytesCopied = distCpWrapper.copy(options);
       return bytesCopied;
